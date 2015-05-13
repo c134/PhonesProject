@@ -37,7 +37,6 @@
         var ulList = document.createElement("ul");
         ulList.id = "phonesList";
         for (var i = 0; i < phones.length; i++) {
-            //need to create a new li for each item in the array
             var newLi = document.createElement("li");
             var textAge = document.createTextNode(phones[i].age);
             var textId = document.createTextNode(phones[i].id);
@@ -51,12 +50,37 @@
             newLi.appendChild(textSnippet);
             ulList.appendChild(newLi);
         }
-
-//add the ul to the body
-        document.body.appendChild(ulList)
-
+        document.body.appendChild(ulList);
 
     }
+    //Работает, но добавляет точку слева от изображения и без текстового нода.
+    //на чистом JS формировать ноды DOM (через document.createElement, document.createTextNode)
+    // и добавлять их в DOM через appendChild()
+    function createList_Task_3_working(){
+        var ulList = document.createElement("ul");
+        ulList.id = "phonesList";
+        for(var i = 0; i < phones.length; i++){
+            addStep(ulList, phones[i].age);
+            addStep(ulList, phones[i].id);
+
+            var li = document.createElement("li");
+            var img = document.createElement("img");
+            img.src  = phones[i].imageUrl;
+            li.appendChild(img);
+            ulList.appendChild(li);
+
+            addStep(ulList, phones[i].name);
+            addStep(ulList, phones[i].snippet);
+
+        }
+        function addStep(ul, text) {
+            var _li = document.createElement("li");
+            _li.innerHTML = text;
+            ul.appendChild(_li);
+        }
+        document.body.appendChild(ulList)
+    }
+
   //Работает
   //Создавать элементы DOM c помощью jQuery $(). и добавлять их через $.append().
   function createList_Task_4(){
@@ -70,7 +94,8 @@
 
 //createList_Task_4();
 //createList_Task_4();
-    createList_Task_3();
+//    createList_Task_3();
+    createList_Task_3_working();
 </script>
 
 <script src="js/bootstrap.min.js"></script>
