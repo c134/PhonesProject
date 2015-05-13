@@ -7,11 +7,13 @@
     <link href="css/bootstrap-table.min.css" rel="stylesheet">
 </head>
 <body>
-<div id="div1" class="container">
+<header class="text-center">
     <h1>List of Phones</h1>
-    <ul id="phonesList">
+</header>
+<div id="div1" class="container">
+    <!--<ul id="phonesList">-->
 
-    </ul>
+    <!--</ul>-->
 </div>
 <script src = "js/phonesJS.js"></script>
 <script src="js/jquery-1.11.3.js"></script>
@@ -28,24 +30,32 @@
         out+= "</ul>";
         document.getElementById("div1").innerHTML = out;
     }
-    //Не работает. Розбираюсь.
+    // Работает но пока не разделяет записи. Разбираюсь.
     //на чистом JS формировать ноды DOM (через document.createElement, document.createTextNode)
     // и добавлять их в DOM через appendChild()
     function createList_Task_3(){
-//      var list = document.getElementById("phonesList");
-        var list = document.createElement("UL");
-        var listLI = document.createElement("li");
-        list.setAttribute('id', 'phoneList');
-        for (var item in phones){
-//          var node = document.createTextNode(phones[item]);
-            list+= "<li>"+ phones[item].age + "</li><br><li>"
-            + phones[item].id +"</li><br><img src='" +phones[item].imageUrl +"'/></li><br><li>"
-            + phones[item].name + "</li><br><li>" + phones[item].snippet + "</li>";
-//        list.appendChild();
-            var node = document.createTextNode(list);
+        var ulList = document.createElement("ul");
+        ulList.id = "phonesList";
+        for (var i = 0; i < phones.length; i++) {
+            //need to create a new li for each item in the array
+            var newLi = document.createElement("li");
+            var textAge = document.createTextNode(phones[i].age);
+            var textId = document.createTextNode(phones[i].id);
+            var textImg = document.createTextNode(phones[i].imageUrl);
+            var textName = document.createTextNode(phones[i].name);
+            var textSnippet = document.createTextNode(phones[i].snippet);
+            newLi.appendChild(textAge);
+            newLi.appendChild(textId);
+            newLi.appendChild(textImg);
+            newLi.appendChild(textName);
+            newLi.appendChild(textSnippet);
+            ulList.appendChild(newLi);
         }
-//      document.getElementById("div1").appendChild(list);
-        document.getElementById("div1").appendChild(node);
+
+//add the ul to the body
+        document.body.appendChild(ulList)
+
+
     }
   //Работает
   //Создавать элементы DOM c помощью jQuery $(). и добавлять их через $.append().
@@ -59,11 +69,16 @@
   }
 
 //createList_Task_4();
-createList_Task_4();
+//createList_Task_4();
+    createList_Task_3();
 </script>
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-table.min.js"></script>
 </body>
-<footer></footer>
+<div id="footer" class="">
+    <div class="container">
+        <p  class="text-muted">Phone List &copy; 2015. All rights reserved.</p>
+    </div>
+</div>
 </html>
