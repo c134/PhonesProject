@@ -47,16 +47,18 @@
 //      document.getElementById("div1").appendChild(list);
         document.getElementById("div1").appendChild(node);
     }
-  //Работает но пока не так как нужно.
+  //Работает
   //Создавать элементы DOM c помощью jQuery $(). и добавлять их через $.append().
   function createList_Task_4(){
+      var arr= [];
       $.each(phones, function(i, phone){
-          phones.push("<li>" + phone.age + phone.id +"</li><br><li>" +
+          arr.push("<li>" + phone.age +"</li><br><li>" + phone.id +
           "</li><br><img src='" + phone.imageUrl + "'/></li><br><li>" + phone.name + "</li><br><li>" + phone.snippet +"</li>" );
       });
-      $('#phonesList').append(phones.join(''));
+      $('#phonesList').append(arr.join(''));
   }
 
+//createList_Task_4();
 createList_Task_4();
 </script>
 
