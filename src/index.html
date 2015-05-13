@@ -95,50 +95,50 @@
 
     createList_Task_4();
     //Очищает DOM
-//    HTMLElement.prototype.empty = function() {
-//        var that = this;
-//        while (that.hasChildNodes()) {
-//            that.removeChild(that.lastChild);
-//        }
-//    };
-//    //Циклы в которых происходит замер времени выполнения функции. Все вместе не работают.
-//    console.log("createList_Task_2");
-//    for(var i =0; i< 10; i++){
-//        console.time("timer");
-//        createList_Task_2();
-//        console.timeEnd("timer");
-//        var getDiv = document.getElementById("div1");
-//        getDiv.empty();
-//    }
-//    console.log("createList_Task_3");
-//    for(var i =0; i< 10; i++){
-//        console.time("timer");
-//        createList_Task_3();
-//        console.timeEnd("timer");
-//        var getDiv = document.getElementById("div1");
-//        getDiv.empty();
-//    }
-//    //Работает но не отображает изображения. Думаю это из-за того, что функция не создает свой список <ul>, а добавляет <li> в существующий.
-////    console.log("createList_Task_4");
-////    for(var i =0; i< 10; i++){
-////        console.time("timer");
-////        createList_Task_4();
-////        console.timeEnd("timer");
-////        var getDiv = document.getElementById("div1");
-////        getDiv.empty();
-////    }
-//    console.log("createList_Task_3_working");
-//    for(var i =0; i< 10; i++){
-//        console.time("timer");
-//        createList_Task_3_working();
-//        console.timeEnd("timer");
-//        var getDiv = document.getElementById("div1");
-//        getDiv.empty();
-//    }
-////    var createUl = document.createElement("ul");
-////    createUl.id = "phonesListInDiv";
-////    document.appendChild(createUl);
-////    createList_Task_4();
+    HTMLElement.prototype.empty = function() {
+        var that = this;
+        while (that.hasChildNodes()) {
+            that.removeChild(that.lastChild);
+        }
+    };
+    //Циклы в которых происходит замер времени выполнения функции. Все вместе не работают.
+    console.log("createList_Task_2");
+    for(var i =0; i< 10; i++){
+        console.time("timer");
+        createList_Task_2();
+        console.timeEnd("timer");
+        var getDiv = document.getElementById("div1");
+        getDiv.empty();
+    }
+    console.log("createList_Task_3");
+    for(var i =0; i< 10; i++){
+        console.time("timer");
+        createList_Task_3();
+        console.timeEnd("timer");
+        var getDiv = document.getElementById("div1");
+        getDiv.empty();
+    }
+    //Работает но не отображает изображения. Думаю это из-за того, что функция не создает свой список <ul>, а добавляет <li> в существующий.
+    console.log("createList_Task_4");
+    for(var i =0; i< 10; i++){
+        console.time("timer");
+        createList_Task_4();
+        console.timeEnd("timer");
+        var getDiv = document.getElementById("div1");
+        getDiv.empty();
+    }
+    console.log("createList_Task_3_working");
+    for(var i =0; i< 10; i++){
+        console.time("timer");
+        createList_Task_3_working();
+        console.timeEnd("timer");
+        var getDiv = document.getElementById("div1");
+        getDiv.empty();
+    }
+//    var createUl = document.createElement("ul");
+//    createUl.id = "phonesListInDiv";
+//    document.appendChild(createUl);
+//    createList_Task_4();
 
 </script>
 
