@@ -1,52 +1,45 @@
-/// Теперь во всех функциях один телефон принадлежит одному <li>
-function createList_Task_1(){
+function createList_Task_1(divID){
     var arr = phones;
     var out = "<ul>";
     for(var i = 0; i < arr.length;i++){
         out+="<li>" + arr[i].age +"<br>" + arr[i].id +"<br><img src='" + arr[i].imageUrl  +"'/><br>"  + arr[i].name + "<br>" + arr[i].snippet + "</li>";
     }
     out+= "</ul>";
-    document.getElementById("div1").innerHTML = out;
+    document.getElementById(divID).innerHTML = out;
 }
-function createList_Task_2(){
+function createList_Task_2(divID){
     var createNewUL = document.createElement("ul");
     createNewUL.id = "phoneList";
-    document.getElementById("div1").appendChild(createNewUL);
+    document.getElementById(divID).appendChild(createNewUL);
     for(var i = 0; i < phones.length;i++){
 
-        var createNewLi = document.createElement("li");
         var chunk = "<li>" + phones[i].age +"<br>" + phones[i].id +"<br><img src='"
             + phones[i].imageUrl  +"'/><br>"  + phones[i].name + "<br>" + phones[i].snippet + "</li>";
 
-        createNewLi.innerHTML+= chunk;
-        document.getElementById("phoneList").appendChild(createNewLi);
+        document.getElementById("phoneList").innerHTML += chunk;
     }
 }
-//Теперь отображает картинки
-//Не заню как разбить строку
-function createList_Task_3(){
+function createList_Task_3(divID){
     var ulList = document.createElement("ul");
     ulList.id = "phonesList";
-    var arr = [];
     for (var i = 0; i < phones.length; i++) {
         var newLi = document.createElement("li");
-        var textAge = document.createTextNode(phones[i].age);
-        var textId = document.createTextNode(phones[i].id);
-        //var textImg = document.createTextNode(phones[i].imageUrl);
+        newLi.appendChild(document.createTextNode(phones[i].age));
+        newLi.appendChild(document.createElement("br"));
+        newLi.appendChild(document.createTextNode(phones[i].id));
+        newLi.appendChild(document.createElement("br"));
         var img =  document.createElement('img');
         img.src = phones[i].imageUrl;
-        var textName = document.createTextNode(phones[i].name);
-        var textSnippet = document.createTextNode(phones[i].snippet);
-        newLi.appendChild(textAge);
-        newLi.appendChild(textId);
         newLi.appendChild(img);
-        newLi.appendChild(textName);
-        newLi.appendChild(textSnippet);
-
+        //newLi.appendChild(document.createTextNode(phones[i].imageUrl));
+        newLi.appendChild(document.createElement("br"));
+        newLi.appendChild(document.createTextNode(phones[i].name));
+        newLi.appendChild(document.createElement("br"));
+        newLi.appendChild(document.createTextNode(phones[i].snippet));
 
         ulList.appendChild(newLi);
     }
-    document.body.appendChild(ulList);
+    document.getElementById(divID).appendChild(ulList);
 
 }
 function createList_Task_3_working(){
@@ -73,41 +66,26 @@ function createList_Task_3_working(){
     }
     document.body.appendChild(ulList)
 }
-function createList_Task_3_v3(){
-    var ul = document.createElement("ul");
-    ul.id = "phoneList";
-    for(var i = 0; i < phones.length; i++){
 
-    }
-}
-//function createList_Task_4(){
-//    var arr= [];
-//    $.each(phones, function(i, phone){
-//        arr.push("<li>" + phone.age +"</li><br><li>" + phone.id +
-//        "</li><br><img src='" + phone.imageUrl + "'/></li><br><li>" + phone.name + "</li><br><li>" + phone.snippet +"</li>" );
-//    });
-//    $('#phonesListInDiv').append(arr.join(''));
-//}
-//Теперь создает свой <ul>
-function createList_Task_4(){
+function createList_Task_4(divID){
+    divID = "#"+divID;
     var arr= [];
     var $ulList = $("<ul></ul>");
     $ulList.id = "phonesList";
-    $('#div1').append($ulList);
+    $(divID).append($ulList);
     $.each(phones, function(i, phone){
         arr.push("<li>" + phone.age +"<br>" + phone.id +
         "<br><img src='" + phone.imageUrl + "'/><br>" + phone.name + "<br>" + phone.snippet +"</li>" );
     });
-    $("#div1").append(arr.join(' '));
+    $(divID).append(arr.join(' '));
 }
 function measureTimeExecution(domID, testFunc){
-    //console.log(testFunc);
     console.time("timer");
     for(var i = 0; i < 10; i++){
        testFunc();
        var getDiv = document.getElementById(domID);
-        getDiv.empty();
     }
+    getDiv.empty();
     console.timeEnd("timer");
 }
 HTMLElement.prototype.empty = function() {
@@ -116,6 +94,4 @@ HTMLElement.prototype.empty = function() {
             that.removeChild(that.lastChild);
         }
     };
-
-//createList_Task_1();
-createList_Task_1();
+createList_Task_3("div1");
