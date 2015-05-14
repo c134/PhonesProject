@@ -11,10 +11,10 @@ function createList_Task_2(divID){
     var createNewUL = document.createElement("ul");
     createNewUL.id = "phoneList";
     document.getElementById(divID).appendChild(createNewUL);
-    for(var i = 0; i < phones.length;i++){
+    for(var i = 0; i < phones.length;i++) {
 
-        var chunk = "<li>" + phones[i].age +"<br>" + phones[i].id +"<br><img src='"
-            + phones[i].imageUrl  +"'/><br>"  + phones[i].name + "<br>" + phones[i].snippet + "</li>";
+        var chunk = "<li>" + phones[i].age + "<br>" + phones[i].id + "<br><img src='"
+            + phones[i].imageUrl + "'/><br>" + phones[i].name + "<br>" + phones[i].snippet + "</li>";
 
         document.getElementById("phoneList").innerHTML += chunk;
     }
@@ -94,4 +94,4 @@ HTMLElement.prototype.empty = function() {
             that.removeChild(that.lastChild);
         }
     };
-createList_Task_3("div1");
+//measureTimeExecution("div1", function(){createList_Task_1("div1");});
