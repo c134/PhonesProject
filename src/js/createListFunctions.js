@@ -1,8 +1,9 @@
+/// Теперь во всех функциях один телефон принадлежит одному <li>
 function createList_Task_1(){
     var arr = phones;
     var out = "<ul>";
     for(var i = 0; i < arr.length;i++){
-        out+="<li>" + arr[i].age +"</li><br><li>" + arr[i].id +"</li><br><img src='" + arr[i].imageUrl  +"'/></li><br><li>"  + arr[i].name + "</li><br><li>" + arr[i].snippet + "</li>";
+        out+="<li>" + arr[i].age +"<br>" + arr[i].id +"<br><img src='" + arr[i].imageUrl  +"'/><br>"  + arr[i].name + "<br>" + arr[i].snippet + "</li>";
     }
     out+= "</ul>";
     document.getElementById("div1").innerHTML = out;
@@ -14,28 +15,35 @@ function createList_Task_2(){
     for(var i = 0; i < phones.length;i++){
 
         var createNewLi = document.createElement("li");
-        var chunk = "<li>" + phones[i].age +"</li><br><li>" + phones[i].id +"</li><br><img src='"
-            + phones[i].imageUrl  +"'/></li><br><li>"  + phones[i].name + "</li><br><li>" + phones[i].snippet + "</li>";
+        var chunk = "<li>" + phones[i].age +"<br>" + phones[i].id +"<br><img src='"
+            + phones[i].imageUrl  +"'/><br>"  + phones[i].name + "<br>" + phones[i].snippet + "</li>";
 
         createNewLi.innerHTML+= chunk;
         document.getElementById("phoneList").appendChild(createNewLi);
     }
 }
+//Теперь отображает картинки
+//Не заню как разбить строку
 function createList_Task_3(){
     var ulList = document.createElement("ul");
     ulList.id = "phonesList";
+    var arr = [];
     for (var i = 0; i < phones.length; i++) {
         var newLi = document.createElement("li");
         var textAge = document.createTextNode(phones[i].age);
         var textId = document.createTextNode(phones[i].id);
-        var textImg = document.createTextNode(phones[i].imageUrl);
+        //var textImg = document.createTextNode(phones[i].imageUrl);
+        var img =  document.createElement('img');
+        img.src = phones[i].imageUrl;
         var textName = document.createTextNode(phones[i].name);
         var textSnippet = document.createTextNode(phones[i].snippet);
         newLi.appendChild(textAge);
         newLi.appendChild(textId);
-        newLi.appendChild(textImg);
+        newLi.appendChild(img);
         newLi.appendChild(textName);
         newLi.appendChild(textSnippet);
+
+
         ulList.appendChild(newLi);
     }
     document.body.appendChild(ulList);
@@ -65,6 +73,13 @@ function createList_Task_3_working(){
     }
     document.body.appendChild(ulList)
 }
+function createList_Task_3_v3(){
+    var ul = document.createElement("ul");
+    ul.id = "phoneList";
+    for(var i = 0; i < phones.length; i++){
+
+    }
+}
 //function createList_Task_4(){
 //    var arr= [];
 //    $.each(phones, function(i, phone){
@@ -73,14 +88,15 @@ function createList_Task_3_working(){
 //    });
 //    $('#phonesListInDiv').append(arr.join(''));
 //}
+//Теперь создает свой <ul>
 function createList_Task_4(){
     var arr= [];
     var $ulList = $("<ul></ul>");
     $ulList.id = "phonesList";
     $('#div1').append($ulList);
     $.each(phones, function(i, phone){
-        arr.push("<li>" + phone.age +"</li><br><li>" + phone.id +
-        "</li><br><img src='" + phone.imageUrl + "'/></li><br><li>" + phone.name + "</li><br><li>" + phone.snippet +"</li>" );
+        arr.push("<li>" + phone.age +"<br>" + phone.id +
+        "<br><img src='" + phone.imageUrl + "'/><br>" + phone.name + "<br>" + phone.snippet +"</li>" );
     });
     $("#div1").append(arr.join(' '));
 }
@@ -100,3 +116,6 @@ HTMLElement.prototype.empty = function() {
             that.removeChild(that.lastChild);
         }
     };
+
+//createList_Task_1();
+createList_Task_1();
