@@ -65,13 +65,24 @@ function createList_Task_3_working(){
     }
     document.body.appendChild(ulList)
 }
+//function createList_Task_4(){
+//    var arr= [];
+//    $.each(phones, function(i, phone){
+//        arr.push("<li>" + phone.age +"</li><br><li>" + phone.id +
+//        "</li><br><img src='" + phone.imageUrl + "'/></li><br><li>" + phone.name + "</li><br><li>" + phone.snippet +"</li>" );
+//    });
+//    $('#phonesListInDiv').append(arr.join(''));
+//}
 function createList_Task_4(){
     var arr= [];
+    var $ulList = $("<ul></ul>");
+    $ulList.id = "phonesList";
+    $('#div1').append($ulList);
     $.each(phones, function(i, phone){
         arr.push("<li>" + phone.age +"</li><br><li>" + phone.id +
         "</li><br><img src='" + phone.imageUrl + "'/></li><br><li>" + phone.name + "</li><br><li>" + phone.snippet +"</li>" );
     });
-    $('#phonesListInDiv').append(arr.join(''));
+    $("#div1").append(arr.join(' '));
 }
 function measureTimeExecution(domID, testFunc){
     //console.log(testFunc);
