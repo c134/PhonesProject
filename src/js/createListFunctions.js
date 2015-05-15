@@ -94,4 +94,6 @@ HTMLElement.prototype.empty = function() {
             that.removeChild(that.lastChild);
         }
     };
-//measureTimeExecution("div1", function(){createList_Task_1("div1");});
+//var c = new ListMaker("div1", phones);
+////c.CreateUlTask_4();
+//c.GetTimeExecutiom(function(){this.CreateUlTask_4});
