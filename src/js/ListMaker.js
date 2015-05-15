@@ -56,7 +56,7 @@ function ListMaker(divID, arr){
         });
         $(this.divID).append(arr.join(' '));
     }
-    this.GetTimeExecutiom =  function measureTimeExecution(testFunc){
+    this.GetTimeExecution =  function measureTimeExecution(testFunc){
         console.time("timer");
         for(var i = 0; i < 10; i++){
             testFunc();

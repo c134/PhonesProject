@@ -96,4 +96,4 @@ HTMLElement.prototype.empty = function() {
     };
 //var c = new ListMaker("div1", phones);
 ////c.CreateUlTask_4();
-//c.GetTimeExecutiom(function(){this.CreateUlTask_4});
+//c.GetTimeExecution(function(){this.CreateUlTask_4});
