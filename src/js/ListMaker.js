@@ -4,7 +4,7 @@ function ListMaker(divID, arr){
     this.CreateUlTask_1 = function createList_Task_1(){
         var out = "<ul>";
         for(var i = 0; i < this.arr.length;i++){
-            out+="<li>" + arr[i].age +"<br>" + arr[i].id +"<br><img src='" + arr[i].imageUrl  +"'/><br>"  + arr[i].name + "<br>" + arr[i].snippet + "</li>";
+            out+="<li>" + this.arr[i].age +"<br>" +this.arr[i].id +"<br><img src='" + this.arr[i].imageUrl  +"'/><br>"  + this.arr[i].name + "<br>" + this.arr[i].snippet + "</li>";
         }
         out+= "</ul>";
         document.getElementById(this.divID).innerHTML = out;
@@ -65,11 +65,10 @@ function ListMaker(divID, arr){
         getDiv.empty();
         console.timeEnd("timer");
     }
-    HTMLElement.prototype.empty = function() {
-        var that = this;
-        while (that.hasChildNodes()) {
-            that.removeChild(that.lastChild);
-        }
-    };
-
 }
+HTMLElement.prototype.empty = function() {
+    var that = this;
+    while (that.hasChildNodes()) {
+        that.removeChild(that.lastChild);
+    }
+};

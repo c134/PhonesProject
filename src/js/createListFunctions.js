@@ -94,6 +94,3 @@ HTMLElement.prototype.empty = function() {
             that.removeChild(that.lastChild);
         }
     };
-//var c = new ListMaker("div1", phones);
-////c.CreateUlTask_4();
-//c.GetTimeExecution(function(){this.CreateUlTask_4});
