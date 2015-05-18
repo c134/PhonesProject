@@ -1,26 +1,11 @@
 var Abstract_ListMaker = {
-    divID: null,
-    arr: null,
-    //Empty abstract function
-    initialize: function(){},
-    //Empty abstract function
-    RenderList: function(){},
-    //Empty abstract function
-    GetExecutionTime: function(){}
-};
-var ListMakerTask_1 =  _.create(Abstract_ListMaker,{
     initialize: function(divID, arr){
         this.divID = divID;
         this.arr = arr;
     },
-    RenderList: function(){
-    var out = "<ul>";
-    for(var i = 0; i < this.arr.length;i++){
-        out+="<li>" + this.arr[i].age +"<br>" + this.arr[i].id +"<br><img src='" + this.arr[i].imageUrl  +"'/><br>"  + this.arr[i].name + "<br>" + this.arr[i].snippet + "</li>";
-    }
-    out+= "</ul>";
-    document.getElementById(this.divID).innerHTML = out;
-},
+    //Empty abstract function
+    RenderList: function(){},
+
     GetExecutionTime: function(testFunc){
         console.time("timer");
         for(var i = 0; i < 10; i++){
@@ -31,8 +16,19 @@ var ListMakerTask_1 =  _.create(Abstract_ListMaker,{
         getDiv.empty();
         console.timeEnd("timer");
     }
+};
+var ListMakerTask_1 =  _.create(Abstract_ListMaker,{
+
+    RenderList: function(){
+    var out = "<ul>";
+    for(var i = 0; i < this.arr.length;i++){
+        out+="<li>" + this.arr[i].age +"<br>" + this.arr[i].id +"<br><img src='" + this.arr[i].imageUrl  +"'/><br>"  + this.arr[i].name + "<br>" + this.arr[i].snippet + "</li>";
+    }
+    out+= "</ul>";
+    document.getElementById(this.divID).innerHTML = out;
+}
 });
-var ListMakerTask_2 = _.create(ListMakerTask_1, {
+var ListMakerTask_2 = _.create(Abstract_ListMaker, {
     RenderList: function(){
     var createNewUL = document.createElement("ul");
     createNewUL.id = "phoneList";
@@ -45,7 +41,7 @@ var ListMakerTask_2 = _.create(ListMakerTask_1, {
         document.getElementById("phoneList").innerHTML += chunk;
     }
 }});
-var ListMakerTask_3 = _.create(ListMakerTask_2,{
+var ListMakerTask_3 = _.create(Abstract_ListMaker,{
     RenderList: function(){
         var ulList = document.createElement("ul");
         ulList.id = "phonesList";
@@ -69,7 +65,7 @@ var ListMakerTask_3 = _.create(ListMakerTask_2,{
         document.getElementById(this.divID).appendChild(ulList);
     }
 });
-var ListMakerTask_4 = _.create(ListMakerTask_3,{
+var ListMakerTask_4 = _.create(Abstract_ListMaker,{
     RenderList: function(){
         this.divID = "#"+this.divID;
         var arr= [];
