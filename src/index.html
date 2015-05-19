@@ -16,25 +16,34 @@
     <div id="ordersCartDiv" class="col-md-4 col-md-offset-4"><p class="text-right">orders</p> </div>
 
 </div>
+<!--Templates-->
 <script type="text/template" id="listTemplate">
 
-        <ul>
+        <ul id = "list">
             <% for (var i=0; i< phones.length; i++) { %>
             <li><%=phones[i].age %><br>
             <%=phones[i].name%><br>
             <%=phones[i].id%><br>
-            <img src="<%=phones[i].imageUrl%>" alt="<%=phones[i].name%>"/><br>
+            <img src="<%=phones[i].imageUrl%>"/><br>
             <%=phones[i].snippet%><br>
-            <%=phones[i].price%></li>
+           <p>Price: <%=phones[i].price%></p>
+                <button id="<%=phones[i].id%>" class="btn btn-success" type="submit">Buy</button>
+            </li>
             <% } %>
+
     </ul>
 </script>
+<script type="text/template" >
+<ul id = "cart">
 
+</ul>
+</script>
 <script src = "js/phonesJS.js"></script>
 <script src="js/external_libraries/jquery-1.11.3.js"></script>
 <script src="js/external_libraries/underscore.js"></script>
 <script src="js/external_libraries/bootstrap.min.js"></script>
 <script src="js/ListOfPhonesTemplate.js"></script>
+<script src="js/ButtonsLogic.js"></script>
 <script src="js/main.js"></script>
 <div id="footer" class="">
     <div class="container">
