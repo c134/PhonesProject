@@ -1,7 +1,6 @@
 $("#list").delegate("button",'click',function(){
 
-
-    var  purchase = {id: null,name: null,price: null };
+        var  purchase = {id: null,name: null,price: null };
     var purchases = [];
     for(var i = 0; i < phones.length; i++){
         if(this.id === phones[i].id){
@@ -10,12 +9,23 @@ $("#list").delegate("button",'click',function(){
             purchase.price = phones[i].price;
             //break;
              purchases.push(purchase);
+            console.log(purchases);
+            $.each( purchases, function(i, purchase){
+                purchases.push("<li>" + purchase.id +
+                "<br>" + purchase.name + "<br>" + "Price:" +purchase.price + "<br>" + "<button type='button' id='purchase.id' class='btn-default'>remove</button>" +"</li>" );
+            });
+            $('#ordersUl').append(purchases);
         }
     }
-    console.log(purchases);
-    var temp = _.template($("#cartTemplate").html());
-    var getPurchase = temp({purchases: purchases});
-    $("#ordersCartDiv").html(getPurchase);
+
+    //var temp = _.template($("#cartTemplate").html());
+    //var getPurchase = temp({purchases: purchases});
+    //$("#ordersCartDiv").html(getPurchase);
+
+
+
+
+
     //<% for (var i=0; i< purchase.length; i++) { %>
     //<li><%=purchase[i].name%><br>
     //    <%=purchase[i].id%><br>

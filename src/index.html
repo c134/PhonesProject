@@ -13,7 +13,9 @@
 
     <div id="phonesDiv" class="col-md-8"></div>
 
-    <div id="ordersCartDiv" class="col-md-4"><h3 class="text-center">orders</h3> </div>
+    <div id="ordersCartDiv" class="col-md-4"><h3 class="text-center">orders</h3>
+        <ul id="ordersUl" ></ul>
+    </div>
 
 </div>
 <!--Templates-->
@@ -33,19 +35,19 @@
 
     </ul>
 </script>
-<script type="text/template" id = "cartTemplate">
-<ul id = "cartList" >
-    <% for (var i=0; i< purchases.length; i++) { %>
-    <li><%=purchases[i].id%><br>
-        <%=purchases[i].name%><br>
-        <p>Price: <%=purchases[i].price%></p>
-        <button id="<%=purchases[i].id%>" type="button" class="btn-default" aria-label="center-align">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>Remove
-        </button>
-    </li>
-    <%}%>
-</ul>
-</script>
+<!--<script type="text/template" id = "cartTemplate">-->
+<!--<ul id = "cartList" >-->
+    <!--<% for (var i=0; i< purchases.length; i++) { %>-->
+    <!--<li><%=purchases[i].id%><br>-->
+        <!--<%=purchases[i].name%><br>-->
+        <!--<p>Price: <%=purchases[i].price%></p>-->
+        <!--<button id="<%=purchases[i].id%>" type="button" class="btn-default" aria-label="center-align">-->
+            <!--<span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>Remove-->
+        <!--</button>-->
+    <!--</li>-->
+    <!--<%}%>-->
+<!--</ul>-->
+<!--</script>-->
 <script src = "js/phonesJS.js"></script>
 <script src="js/external_libraries/jquery-1.11.3.js"></script>
 <script src="js/external_libraries/underscore.js"></script>
