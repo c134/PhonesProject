@@ -34,12 +34,12 @@ $("#list").delegate("button",'click',function(){
     //    <% } %>
 
 });
-$("#ordersCartDiv").delegate("button","click", function() {
-    //if(this.id===$('li').attr('id')){
-    //
-    //}
-    //var id = "#" + this.id;
-    //$(id).remove();
+$("#ordersCartDiv #ordersUl").delegate("button","click", function() {
+    var buttonId = $(this).attr('id');
+    console.log(buttonId);
+    //$("li[id=buttonId]").remove();
+    $("#ordersUl #" + buttonId).remove();
+    console.log("test");   // code indentation
 });
 $(window).scroll(function(){
     $("#ordersCartDiv").css({"margin-top": ($(window).scrollTop()) + "px", "margin-left":($(window).scrollLeft()) + "px"});
