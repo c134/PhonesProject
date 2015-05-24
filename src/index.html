@@ -13,9 +13,7 @@
 
     <div id="phonesDiv" class="col-md-8"></div>
 
-    <div id="ordersCartDiv" class="col-md-4"><h3 class="text-center">orders</h3>
-        <ul id="ordersUl" ></ul>
-    </div>
+    <div id="ordersCartDiv" class="col-md-4"><h3 class="text-center">orders</h3></div>
 
 </div>
 <!--Templates-->
@@ -35,26 +33,34 @@
 
     </ul>
 </script>
-<!--<script type="text/template" id = "cartTemplate">-->
-<!--<ul id = "cartList" >-->
-    <!--<% for (var i=0; i< purchases.length; i++) { %>-->
-    <!--<li><%=purchases[i].id%><br>-->
-        <!--<%=purchases[i].name%><br>-->
-        <!--<p>Price: <%=purchases[i].price%></p>-->
-        <!--<button id="<%=purchases[i].id%>" type="button" class="btn-default" aria-label="center-align">-->
-            <!--<span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>Remove-->
-        <!--</button>-->
-    <!--</li>-->
-    <!--<%}%>-->
-<!--</ul>-->
-<!--</script>-->
+
+<script type="text/template" id="cartTemplate">
+    <ul id = "cartList" >
+    <% for(var i = 0; i < items.length; i++){%>
+    <li id="<%=items[i].id%>"><%=items[i].id%><br>
+        <%=items[i].name%><br>
+        Price per Phone:<%=items[i].price%><br>
+        Quantity:<%=Cart.quantity%><br>
+        Total:<%=Cart.total%><br>
+        <button id="<%=items[i].id%>" type="button" class="btn btn-default" aria-label="center-align">
+           Remove
+        </button>
+    </li>
+        <%}%>
+        </ul>
+</script>
 <script src = "js/phonesJS.js"></script>
 <script src="js/external_libraries/jquery-1.11.3.js"></script>
 <script src="js/external_libraries/underscore.js"></script>
 <script src="js/external_libraries/bootstrap.min.js"></script>
-<script src="js/ListOfPhonesTemplate.js"></script>
-<script src="js/AddToCart.js"></script>
-<script src="js/main.js"></script>
+<script src="js/Views/RenderPhonesOnSaleView.js"></script>
+<script src="js/Events/AddToCartEvent.js"></script>
+<script src="js/Events/RemoveFromCartEvent.js"></script>
+<script src="js/ScrollDiv.js"></script>
+<script src="js/Models/CartModel.js"></script>
+<script src="js/Controllers/AddToCartController.js"></script>
+<script src="js/Controllers/RemoveFromCartController.js"></script>
+<script src="js/Views/RenderCartView.js"></script>
 <div id="footer" class="">
     <div class="container">
         <p  class="text-muted">Phone List &copy; 2015. All rights reserved.</p>
