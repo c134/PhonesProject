@@ -20,14 +20,14 @@
 <script type="text/template" id="listTemplate">
 
         <ul id = "list">
-            <% for (var i=0; i< phones.length; i++) { %>
-            <li><%=phones[i].age %><br>
-            <%=phones[i].name%><br>
-            <%=phones[i].id%><br>
-            <img src="<%=phones[i].imageUrl%>"/><br>
-            <%=phones[i].snippet%><br>
-           <p>Price: <%=phones[i].price%></p>
-                <button id="<%=phones[i].id%>" class="btn btn-success" type="submit">Buy</button>
+            <% for (var i=0; i< items.length; i++) { %>
+            <li><%=items[i].age %><br>
+            <%=items[i].name%><br>
+            <%=items[i].id%><br>
+            <img src="<%=items[i].imageUrl%>"/><br>
+            <%=items[i].snippet%><br>
+           <p>Price: <%=items[i].price%></p>
+                <button id="<%=items[i].id%>" class="btn btn-success" type="submit">Buy</button>
             </li>
             <% } %>
 
@@ -35,13 +35,13 @@
 </script>
 <script type="text/template" id="cartTemplate">
     <ul id = "cartList" >
-    <% for(var i = 0; i < items.length; i++){%>
-    <li id="<%=items[i].id%>"><%=items[i].id%><br>
-        <%=items[i].name%><br>
-        Price per Phone:<%=items[i].price%><br>
-        Quantity:<%=Cart.quantity%><br>
-        Total:<%=Cart.total%><br>
-        <button id="<%=items[i].id%>" type="button" class="btn btn-default" aria-label="center-align">
+    <% for(var i = 0; i < data.items.length; i++){%>
+    <li id="<%=data.items[i].id%>"><%=data.items[i].id%><br>
+        <%=data.items[i].name%><br>
+        Price per Phone:<%=data.items[i].price%><br>
+        Quantity:<%=data.quantity%><br>
+        Total:<%=data.total%><br>
+        <button id="<%=data.items[i].id%>" type="button" class="btn btn-default" aria-label="center-align">
            Remove
         </button>
     </li>
@@ -52,14 +52,10 @@
 <script src="js/external_libraries/jquery-1.11.3.js"></script>
 <script src="js/external_libraries/underscore.js"></script>
 <script src="js/external_libraries/bootstrap.min.js"></script>
-<script src="js/Views/RenderPhonesOnSaleView.js"></script>
-<script src="js/Events/AddToCartEvent.js"></script>
-<script src="js/Events/RemoveFromCartEvent.js"></script>
-<script src="js/ScrollDiv.js"></script>
 <script src="js/Models/CartModel.js"></script>
-<script src="js/Controllers/AddToCartController.js"></script>
-<script src="js/Controllers/RemoveFromCartController.js"></script>
-<script src="js/Views/RenderCartView.js"></script>
+<script src="js/ScrollDiv.js"></script>
+
+
 <div id="footer" class="">
     <div class="container">
         <p  class="text-muted">Phone List &copy; 2015. All rights reserved.</p>
