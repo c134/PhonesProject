@@ -27,7 +27,7 @@
             <img src="<%=items[i].imageUrl%>"/><br>
             <%=items[i].snippet%><br>
            <p>Price: <%=items[i].price%></p>
-                <button id="<%=items[i].id%>" class="btn btn-success" type="submit">Buy</button>
+                <button id="<%=items[i].id%>" class="buyButton btn btn-success" type="submit">Buy</button>
             </li>
             <% } %>
 
@@ -41,7 +41,7 @@
         Price per Phone:<%=data.items[i].price%><br>
         Quantity:<%=data.quantity%><br>
         Total:<%=data.total%><br>
-        <button id="<%=data.items[i].id%>" type="button" class="btn btn-default" aria-label="center-align">
+        <button id="<%=data.items[i].id%>" type="button" class="removeButton btn btn-default" aria-label="center-align">
            Remove
         </button>
     </li>
@@ -52,7 +52,7 @@
 <script src="js/external_libraries/jquery-1.11.3.js"></script>
 <script src="js/external_libraries/underscore.js"></script>
 <script src="js/external_libraries/bootstrap.min.js"></script>
-<script src="js/Models/CartModel.js"></script>
+<script src="js/Models/cartCollection.js"></script>
 <script src="js/ScrollDiv.js"></script>
 
 
