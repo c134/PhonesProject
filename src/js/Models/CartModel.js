@@ -1,90 +1,82 @@
 var itemList = {
     _items: null,
-    _template: null,
-    _rootElement: null, // для чего нужно это свойство так и осталось для меня загадкой.
-    initialize:function(divId, items){
-        this.divId = divId;
+    _template: _.template($("#listTemplate").html()),
+    _rootElement: $("#phonesDiv"),
+    initialize: function (items) {
         this._items = items;
         this.render();
         this._addEvents();
     },
-    render:function(){
-        var itemsCopy = this._items;
-        this._template = _.template($("#listTemplate").html());
+    render: function () {
+        var itemsCopy = _.map(this._items, _.clone);
         var rendTemplate = this._template({items: itemsCopy});
-        $("#" +this.divId).html(rendTemplate);
+        this._rootElement.html(rendTemplate);
     },
-    _addEvents:function(){
-        $("#list").on('click','button', function(){
+    _addEvents: function () {
+        $("#list").on('click', 'button', function () {
             var buttonId = $(this).attr('id');
-            cartCollection.addItem(buttonId,itemList._items);
-            cartCollection.getTotalPrice();
-            cartList.initialize("ordersCartDiv");
+            var result = _.findWhere(itemList._items, {id: buttonId});
+            var purchase = {
+                id: result.id,
+                name: result.name,
+                price: result.price
+            };
+            cartCollection.addItem(purchase);
+            cartList.render();
         });
     }
 };
 var cartCollection = {
     _items: [],
-    _quantity: 0,
-    _total: 0,
-    addItem: function(buttonId, arr){
-        this.buttonId = buttonId;
-        this.arr = arr;
-        var result = _.findWhere(this.arr,{id:this.buttonId});
-        var purchase ={
-            id: result.id,
-            name: result.name,
-            price:result.price
-        };
-        this._items.push(purchase);
+    addItem: function (arr) {
+        this._items.push(arr);
     },
-    removeItem:function(buttonId){
-        this.buttonId = buttonId;
-        for(var i = 0; i < this._items.length; i++){
-            if(this.buttonId == this._items[i].id){
-                this._total -= this._items[i].price;
-                this._items.splice(i,1);
-                break;
-            }
-        }
+    removeItem: function (removeItem) {
+        this._items = _.without(this._items, _.findWhere(this._items, removeItem));
     },
-    getTotalPrice: function(){
+    getItems: function () {
+        return this._items;
+    },
+    getTotalPrice: function () {
         console.log(this._items);
-        this._total = 0;
-        for(var i = 0; i < this._items.length; i++){
-           this._quantity = this._items.length;
-            this._total += this._items[i].price;
+        var total = 0;
+        for (var i = 0; i < this._items.length; i++) {
+            total += this._items[i].price;
         }
+        return total;
+    },
+    getQuantity: function () {
+        var quantity = 0;
+        return quantity = this._items.length;
     }
 };
 var cartList = {
     _itemsCollections: cartCollection,
-    _template: null,
-    _rootElement: null,
-    initialize: function(divId){
+    _template: _.template($("#cartTemplate").html()),
+    _rootElement: $("#ordersCartDiv"),
+    initialize: function (divId) {
         this.divId = divId;
-        cartList.render();
+    },
+    render: function () {
+        var data = {
+            items: this._itemsCollections.getItems(),
+            total: this._itemsCollections.getTotalPrice(),
+            quantity: this._itemsCollections.getQuantity()
+        };
+        var rendTemplate = this._template({data: data});
+        this._rootElement.html(rendTemplate);
         this._addEvents();
     },
-    render:function(){
-        var data={
-            items: cartCollection._items,
-            total:cartCollection._total ,
-            quantity:cartCollection._quantity
-        };
-        this._template = _.template($("#cartTemplate").html());
-        var rendTemplate = this._template({data: data});
-        $("#" + this.divId).html(rendTemplate);
-    },
-    _addEvents:function() {
-        $("#cartList").on('click','button', function () {
+    _addEvents: function () {
+        $(this.divId).on('click', 'button', function () {
             var buttonId = $(this).attr('id');
-            cartCollection.removeItem(buttonId);
-            cartCollection.getTotalPrice();
-            cartList.initialize("ordersCartDiv");
+            var itemToRemove = _.findIndex(cartCollection._items, buttonId);
+            cartCollection.removeItem(itemToRemove);
+            cartList.render();
         });
     }
 };
-itemList.initialize("phonesDiv",phones);
+itemList.initialize(phones);
+cartList.initialize("#cartList");
 
 
