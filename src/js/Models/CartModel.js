@@ -13,7 +13,7 @@ var itemList = {
         this._rootElement.html(rendTemplate);
     },
     _addEvents: function () {
-        $("#list").on('click', 'button', function () {
+        $("#list,.btn-success").on('click', function () {
             var buttonId = $(this).attr('id');
             var result = _.findWhere(itemList._items, {id: buttonId});
             var purchase = {
@@ -68,7 +68,7 @@ var cartList = {
         this._addEvents();
     },
     _addEvents: function () {
-        $(this.divId).on('click', 'button', function () {
+        $(this.divId + ", .btn-default").on('click', function () {
             var buttonId = $(this).attr('id');
             var itemToRemove = _.findIndex(cartCollection._items, buttonId);
             cartCollection.removeItem(itemToRemove);
