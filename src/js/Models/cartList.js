@@ -30,3 +30,4 @@ var cartList = {
         });
     }
 };
+cartList.initialize('#cartList');

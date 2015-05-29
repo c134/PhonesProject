@@ -22,7 +22,8 @@ var itemList = {
             var purchase = {
                 id: result.id,
                 name: result.name,
-                price: result.price
+                price: result.price,
+                quantityPerItem: 1
             };
             cartCollection.addItem(purchase);
             cartList.render();

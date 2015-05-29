@@ -27,6 +27,6 @@ var cartCollection = {
     }
 };
 itemList.initialize(phones);
-cartList.initialize('#cartList');
+
 
 
