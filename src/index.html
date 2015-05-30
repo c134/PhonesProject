@@ -36,16 +36,30 @@
 <script type="text/template" id="cartTemplate">
     <ul id = "cartList" >
     <% for(var i = 0; i < data.items.length; i++){%>
-    <li><%=data.items[i].id%><br>
-        <%=data.items[i].name%><br>
-        <!--<%=data.items[i].quantityPerItem%><br>-->
-        Price per Phone:<%=data.items[i].price%><br>
-        Quantity:<%=data.quantity%><br>
-        Total:<%=data.total%><br>
-        <button id="<%=data.items[i].id%>" type="button" class="removeButton btn btn-default" aria-label="center-align">
-           Remove
-        </button>
-    </li>
+        <%if(data.items[i].quantity === 1){%>
+        <li><%=data.items[i].id%><br>
+            <%=data.items[i].name%><br>
+            Price per Phone:<%=data.items[i].price%><br>
+            <%=data.items[i].thisItemTotal %><br>
+            Total Quantity:<%=data.TotalQuantity%><br>
+            Total Price:<%=data.total%><br>
+            <button id="<%=data.items[i].id%>" type="button" class="removeButton btn btn-default" aria-label="center-align">
+                Remove
+            </button>
+        </li>
+        <%} else {%>
+        <li><%=data.items[i].id%><br>
+            <%=data.items[i].name%><br>
+            Quantity:<%=data.items[i].quantity%><br>
+            Price per Phone:<%=data.items[i].price%><br>
+            <%=data.items[i].thisItemTotal %><br>
+            Total Quantity:<%=data.TotalQuantity%><br>
+            Total Price:<%=data.total%><br>
+            <button id="<%=data.items[i].id%>" type="button" class="removeButton btn btn-default" aria-label="center-align">
+                Remove
+            </button>
+        </li>
+        <%}%>
         <%}%>
         </ul>
 </script>
