@@ -7,7 +7,7 @@ module.exports = function(grunt){
                     reporter: require('jshint-stylish')
                 },
             all: {
-                src: ['src/js/Models/*.js']
+                src: ['src/js/Models/*.js', 'src/js/Views/*.js', 'src/js/Controllers/*.js']
             }
 
         }
