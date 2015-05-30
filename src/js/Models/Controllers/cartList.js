@@ -11,10 +11,11 @@ var cartList = {
     },
     render: function () {
         'use strict';
+        this._itemsCollections.getItemTotalPrice();
         var data = {
             items: this._itemsCollections.getItems(),
             total: this._itemsCollections.getTotalPrice(),
-            quantity: this._itemsCollections.getQuantity()
+            TotalQuantity: this._itemsCollections.getTotalQuantity()
         };
         var rendTemplate = this._template({data: data});
         this._rootElement.html(rendTemplate);
@@ -25,8 +26,8 @@ var cartList = {
         $(this.divId).on('click','.removeButton' , function () {
             var buttonId = $(this).attr('id');
             var itemToRemove = _.findIndex(cartCollection._items, buttonId);
-            cartCollection.removeItem(itemToRemove);
-            cartList.render();
+                cartCollection.removeItem(itemToRemove);
+                cartList.render();
         });
     }
 };
