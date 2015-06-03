@@ -2,52 +2,74 @@ var cartCollection = {
     _items: [],
     addItem: function (obj) {
         'use strict';
-        var result = _.findWhere(this._items, {id: obj.id});
-        if(result){
+        var purchase = {
+            item: _.pick(obj, 'id', 'name', 'price'),
+            thisItemTotal: obj.price,
+            quantity: 1
+        };
+        var result = _.find(this._items, function (item) {
+            return item.item.id === purchase.item.id;
+        });
+        console.log(result);
+        if (typeof result !== 'undefined') {
             result.quantity++;
+            this._itemTotalPrice();
+        }
+        else {
+            this._items.push(purchase);
+        }
+        console.log(this._items);
+    },
+    removeItem: function (obj) {
+        'use strict';
+        console.log(obj);
+        //var itemToRemove = _.clone(obj)
+        var itemToRemove = _.map(obj, _.clone());
+        //var itemToRemove = {
+        //    item: _.pick(obj, 'id', 'name', 'price'),
+        //    thisItemTotal: obj.price,
+        //    quantity: obj.quantity
+        //};
+        console.log(itemToRemove);
+        var result = _.find(this._items, function(item){
+           return item.item.id === itemToRemove.item.id;
+        });
+        if(typeof  result !== 'undefined' && result.quantity > 0){
+            result.quantity--;
+            this._itemTotalPrice();
         }
         else{
-            this._items.push(obj);
+            this._items = _.without(this._items, _.findWhere(this._items, result));
         }
-    },
-    removeItem: function (removeItem) {
-        'use strict';
-        console.log(removeItem);
-        var result = _.findWhere(this._items, removeItem);
-         if(result.quantity > 0){
-            result.quantity--;
-            this._items[removeItem] = result;
-        }
-        else if(result.quantity === 0){
-            this._items = _.without(this._items, _.findWhere(this._items, removeItem));
-        }
+        //var result = _.findWhere(this._items, obj);
+        //if(result.quantity > 0){
+        //    result.quantity--;
+        //    this._items[removeItem] = result;
+        //}
+        //else if(result.quantity === 0){
+        //    this._items = _.without(this._items, _.findWhere(this._items, removeItem));
+        //}
+
     },
     getItems: function () {
         'use strict';
         return this._items;
     },
-    getItemTotalPrice: function(){
+    _itemTotalPrice: function(){
         'use strict';
-        var itemTotal = 0;
-        var price = 0;
-        var quantity = 0;
         for(var i = 0; i < this._items.length; i++){
-            price = this._items[i].price;
-            quantity = this._items[i].quantity;
-            itemTotal = price * quantity;
-            this._items[i].thisItemTotal = itemTotal;
-            console.log(itemTotal);
+            this._items[i].thisItemTotal = this._items[i].item.price * this._items[i].quantity;
         }
-        return itemTotal;
     },
     getTotalPrice: function () {
         'use strict';
-        console.log(this._items);
+        this._itemTotalPrice();
         var total = 0;
         for (var i = 0; i < this._items.length; i++) {
             total += this._items[i].thisItemTotal;
         }
         return total;
+
     },
     getTotalQuantity: function () {
         'use strict';
@@ -58,7 +80,7 @@ var cartCollection = {
         return totalQnt;
     }
 };
-itemList.initialize(phones);
+
 
 
 

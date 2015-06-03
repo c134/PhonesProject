@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <header class="text-center">
@@ -35,11 +35,11 @@
 </script>
 <script type="text/template" id="cartTemplate">
     <ul id = "cartList" >
-    <% for(var i = 0; i < data.items.length; i++){%>
+        <% for(var i = 0; i < data.items.length; i++){%>
         <%if(data.items[i].quantity === 1){%>
-        <li><%=data.items[i].id%><br>
-            <%=data.items[i].name%><br>
-            Price per Phone:<%=data.items[i].price%><br>
+        <li><%=data.items[i].item.id%><br>
+            <%=data.items[i].item.name%><br>
+            Price per Phone:<%=data.items[i].item.price%><br>
             <%=data.items[i].thisItemTotal %><br>
             Total Quantity:<%=data.TotalQuantity%><br>
             Total Price:<%=data.total%><br>
@@ -48,10 +48,10 @@
             </button>
         </li>
         <%} else {%>
-        <li><%=data.items[i].id%><br>
-            <%=data.items[i].name%><br>
+        <li><%=data.items[i].item.id%><br>
+            <%=data.items[i].item.name%><br>
             Quantity:<%=data.items[i].quantity%><br>
-            Price per Phone:<%=data.items[i].price%><br>
+            Price per Phone:<%=data.items[i].item.price%><br>
             <%=data.items[i].thisItemTotal %><br>
             Total Quantity:<%=data.TotalQuantity%><br>
             Total Price:<%=data.total%><br>
@@ -61,16 +61,16 @@
         </li>
         <%}%>
         <%}%>
-        </ul>
+    </ul>
 </script>
-<script src = "../phonesJS.js"></script>
-<script src="../external_libraries/jquery-1.11.3.js"></script>
-<script src="../external_libraries/underscore.js"></script>
-<script src="../external_libraries/bootstrap.min.js"></script>
-<script src="../Controllers/itemList.js"></script>
-<script src="../Models/cartCollection.js"></script>
-<script src="../Controllers/cartList.js"></script>
-<script src="../ScrollDiv.js"></script>
+<script src = "js/phonesJS.js"></script>
+<script src="js/external_libraries/jquery-1.11.3.js"></script>
+<script src="js/external_libraries/underscore.js"></script>
+<script src="js/external_libraries/bootstrap.min.js"></script>
+<script src="js/Controllers/itemList.js"></script>
+<script src="js/Models/cartCollection.js"></script>
+<script src="js/Controllers/cartList.js"></script>
+<script src="js/ScrollDiv.js"></script>
 
 
 <div id="footer" class="">
