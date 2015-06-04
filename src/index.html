@@ -36,21 +36,12 @@
 <script type="text/template" id="cartTemplate">
     <ul id = "cartList" >
         <% for(var i = 0; i < data.items.length; i++){%>
-        <%if(data.items[i].quantity === 1){%>
+        <%if(data.items[i].quantity !== 0){%>
         <li><%=data.items[i].item.id%><br>
             <%=data.items[i].item.name%><br>
-            Price per Phone:<%=data.items[i].item.price%><br>
-            <%=data.items[i].thisItemTotal %><br>
-            Total Quantity:<%=data.TotalQuantity%><br>
-            Total Price:<%=data.total%><br>
-            <button id="<%=data.items[i].item.id%>" type="button" class="removeButton btn btn-default" aria-label="center-align">
-                Remove
-            </button>
-        </li>
-        <%} else {%>
-        <li><%=data.items[i].item.id%><br>
-            <%=data.items[i].item.name%><br>
+            <%if(data.items[i].quantity !== 1){%>
             Quantity:<%=data.items[i].quantity%><br>
+            <%}%>
             Price per Phone:<%=data.items[i].item.price%><br>
             <%=data.items[i].thisItemTotal %><br>
             Total Quantity:<%=data.TotalQuantity%><br>
