@@ -13,7 +13,7 @@
 
     <div id="phonesDiv" class="col-md-8"></div>
 
-    <div id="ordersCartDiv" class="col-md-4"><h3 class="text-center">orders</h3></div>
+    <div id="ordersCartDiv" class="col-md-4"></div>
 
 </div>
 <!--Templates-->
@@ -35,6 +35,7 @@
 </script>
 <script type="text/template" id="cartTemplate">
     <ul id = "cartList" >
+        <h3 class="text-center">orders</h3>
         <% for(var i = 0; i < data.items.length; i++){%>
         <%if(data.items[i].quantity !== 0){%>
         <li><%=data.items[i].item.id%><br>
