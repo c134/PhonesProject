@@ -26,8 +26,6 @@ var cartCollection = {
         var result = _.find(this._items, function(item){
            return item.item.id === buttonId;
         });
-        var index = _.findIndex(this._items, result);
-        console.log(index);
         console.log(result);
         if(typeof  result !== 'undefined' && result.quantity > 0){
             result.quantity--;
@@ -35,7 +33,7 @@ var cartCollection = {
             console.log(result.quantity);
         }
         else if (result.quantity === 0){
-            this._items = _.without(this._items, _.findWhere(this._items, index));
+            this._items = _.without(this._items, _.findWhere(this._items, result));
             console.log('deleted:' + this._items);
         }
     },
