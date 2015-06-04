@@ -20,36 +20,24 @@ var cartCollection = {
         }
         console.log(this._items);
     },
-    removeItem: function (obj) {
+    removeItem: function (buttonId) {
         'use strict';
-        console.log(obj);
-        //var itemToRemove = _.clone(obj)
-        var itemToRemove = _.map(obj, _.clone());
-        //var itemToRemove = {
-        //    item: _.pick(obj, 'id', 'name', 'price'),
-        //    thisItemTotal: obj.price,
-        //    quantity: obj.quantity
-        //};
-        console.log(itemToRemove);
+        console.log(buttonId);
         var result = _.find(this._items, function(item){
-           return item.item.id === itemToRemove.item.id;
+           return item.item.id === buttonId;
         });
+        var index = _.findIndex(this._items, result);
+        console.log(index);
+        console.log(result);
         if(typeof  result !== 'undefined' && result.quantity > 0){
             result.quantity--;
             this._itemTotalPrice();
+            console.log(result.quantity);
         }
-        else{
-            this._items = _.without(this._items, _.findWhere(this._items, result));
+        else if (result.quantity === 0){
+            this._items = _.without(this._items, _.findWhere(this._items, index));
+            console.log('deleted:' + this._items);
         }
-        //var result = _.findWhere(this._items, obj);
-        //if(result.quantity > 0){
-        //    result.quantity--;
-        //    this._items[removeItem] = result;
-        //}
-        //else if(result.quantity === 0){
-        //    this._items = _.without(this._items, _.findWhere(this._items, removeItem));
-        //}
-
     },
     getItems: function () {
         'use strict';

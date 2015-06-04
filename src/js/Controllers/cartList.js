@@ -3,11 +3,10 @@ var cartList = {
     _template: _.template($('#cartTemplate').html()),
     _rootElement: $('#ordersCartDiv'),
     //_rootElementUl: $("#cartList"),
-    initialize: function () {
+    initialize: function (divId) {
         'use strict';
-        //this.divId = divId;
+        this.divId = divId;
         //this._rootElementUl = $("#cartList");
-        //this._itemsCollections= cartCollection;
         this._addEvents();
     },
     render: function () {
@@ -17,31 +16,18 @@ var cartList = {
             total: this._itemsCollections.getTotalPrice(),
             TotalQuantity: this._itemsCollections.getTotalQuantity()
         };
-
         var rendTemplate = this._template({data: data});
         this._rootElement.html(rendTemplate);
         this._addEvents();
-        console.log(this._itemsCollections);
-        //console.log(data);
     },
     _addEvents: function () {
         'use strict';
-        this._rootElement.on('click','.removeButton' , function () {
-            var buttonId = $(this).attr('id');
-            //var IndexOfItemToRemove = _.findIndex(this._itemsCollections, {id:buttonId});
-            //    cartCollection.removeItem(IndexOfItemToRemove);
-            //console.log(IndexOfItemToRemove);
-
-
-            //console.log("collection:" + this._itemsCollections._items);
-            var itemToRemove = _.find(this._itemsCollections, function (collection) {
-                return collection._items.item.id === buttonId;
-            });
-            console.log(itemToRemove);
-            cartCollection.removeItem(itemToRemove);
+        $(this.divId).on('click','.removeButton' , function (e) {
+            var buttonId = $( e.currentTarget ).attr('id');
+            cartCollection.removeItem(buttonId);
             cartList.render();
         });
     }
 };
-//cartList.initialize('#cartList');
-cartList.initialize;
+cartList.initialize('#cartList');
+//cartList.initialize;
