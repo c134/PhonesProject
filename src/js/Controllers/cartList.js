@@ -1,12 +1,10 @@
 var cartList = {
-    _itemsCollections: cartCollection,
+    _itemsCollections: null,
     _template: _.template($('#cartTemplate').html()),
     _rootElement: $('#ordersCartDiv'),
-    //_rootElementUl: $("#cartList"),
-    initialize: function (divId) {
+    initialize: function (collection) {
         'use strict';
-        this.divId = divId;
-        //this._rootElementUl = $("#cartList");
+        this._itemsCollections = collection;
         this._addEvents();
     },
     render: function () {
@@ -18,16 +16,14 @@ var cartList = {
         };
         var rendTemplate = this._template({data: data});
         this._rootElement.html(rendTemplate);
-        this._addEvents();
     },
     _addEvents: function () {
         'use strict';
-        $(this.divId).on('click','.removeButton' , function (e) {
+        this._rootElement.on('click','.removeButton' , function (e) {
             var buttonId = $( e.currentTarget ).attr('id');
             cartCollection.removeItem(buttonId);
             cartList.render();
         });
     }
 };
-cartList.initialize('#cartList');
-//cartList.initialize;
+cartList.initialize(cartCollection);

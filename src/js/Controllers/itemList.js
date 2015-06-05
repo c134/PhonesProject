@@ -5,8 +5,8 @@ var itemList = {
     initialize: function (items) {
         'use strict';
         this._items = items;
-        this.render();
         this._addEvents();
+        this.render();
     },
     render: function () {
         'use strict';
