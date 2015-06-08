@@ -1,0 +1,16 @@
+<script type="text/template" id="listTemplate">
+
+    <ul id = "list">
+        <% for (var i=0; i< items.length; i++) { %>
+        <li><%=items[i].age %><br>
+            <%=items[i].name%><br>
+            <%=items[i].id%><br>
+            <img src="<%=items[i].imageUrl%>"/><br>
+            <%=items[i].snippet%><br>
+            <p>Price: <%=items[i].price%></p>
+            <button id="<%=items[i].id%>" class="buyButton btn btn-success" type="submit">Buy</button>
+        </li>
+        <% } %>
+
+    </ul>
+</script>
