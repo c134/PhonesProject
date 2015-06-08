@@ -45,14 +45,18 @@
             <%}%>
             Price per Phone:<%=data.items[i].item.price%><br>
             <%=data.items[i].thisItemTotal %><br>
-            Total Quantity:<%=data.TotalQuantity%><br>
-            Total Price:<%=data.total%><br>
             <button id="<%=data.items[i].item.id%>" class="removeButton btn btn-default" type="button" aria-label="center-align">
                 Remove
             </button>
         </li>
         <%}%>
         <%}%>
+        <p>
+            <%if(data.TotalQuantity !== 0 && data.total !== 0){%>
+        Total Quantity:<%=data.TotalQuantity%><br>
+        Total Price:<%=data.total%><br>
+            <%}%>
+        </p>
     </ul>
 </script>
 <script src = "js/phonesJS.js"></script>
