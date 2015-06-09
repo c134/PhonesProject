@@ -41,7 +41,7 @@ var cartCollectionModule = (function () {
                 console.log(result.quantity);
             }
             else if (result.quantity === 0) {
-                this._items = _.without(_items, _.findWhere(_items, result));
+                _items = _.without(_items, _.findWhere(_items, result));
                 console.log('deleted:' + _items);
             }
         },
