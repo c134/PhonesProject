@@ -29,6 +29,6 @@ var itemListModule = (function () {
             _rootElement.html(rendTemplate);
         }
 
-    }
+    };
 }());
 itemListModule.initialize(phones);
