@@ -1,7 +1,9 @@
 var itemListModule = (function () {
     'use strict';
     var _items = [];
-    var _template = _.template($('#listTemplate').html());
+    //var _template = _.template($('#listTemplate').html());
+    var itemsCopy = _.map(_items, _.clone);
+    var _template = JST['js/Module1/Views/listTemplateView.html'](itemsCopy);
     var _rootElement = $('#phonesDiv');
     var _addEvents = function () {
         _rootElement.on('click', '.buyButton', function () {
@@ -17,6 +19,8 @@ var itemListModule = (function () {
         });
     };
     return {
+        //_template: JST['js/Module1/Views/listTemplateView.html'](),
+        //_template: JST['js/Module1/Templates/templates.js'](),
         initialize: function (items) {
 
             _items = items;
@@ -24,11 +28,15 @@ var itemListModule = (function () {
             this.render();
         },
         render: function () {
-            var itemsCopy = _.map(_items, _.clone);
+            //var itemsCopy = _.map(_items, _.clone);
             var rendTemplate = _template({items: itemsCopy});
             _rootElement.html(rendTemplate);
         }
 
     };
 }());
+//function createTemplate(templatePath, data) {
+//    var templateString = window['JST'][templatePath](data);
+//    return templateString;
+//}
 itemListModule.initialize(phones);
