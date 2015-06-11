@@ -20,6 +20,13 @@ module.exports = function(grunt){
               }
           }
         },
+        jst: {
+            compile: {
+                files: {
+                    "src/js/Module1/Templates/templates.js": ["src/js/Module1/Views/*.html"]
+                }
+            }
+        },
         jshint: {
                 options: {
                     jshintrc: '.jshintrc.json',
@@ -35,5 +42,6 @@ module.exports = function(grunt){
     //grunt.loadNpmTasks('grunt-connect');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks("grunt-serve");
+    grunt.loadNpmTasks('grunt-contrib-jst');
     grunt.registerTask('default', ['jshint']);
 };
