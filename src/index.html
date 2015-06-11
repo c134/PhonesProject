@@ -17,23 +17,24 @@
 
 </div>
 <!--Templates-->
-<script type="text/template" id="listTemplate">
+<!--<script type="text/template" id="listTemplate">-->
 
-        <ul id = "list">
-            <% for (var i=0; i< items.length; i++) { %>
-            <li><%=items[i].age %><br>
-            <%=items[i].name%><br>
-            <%=items[i].id%><br>
-            <img src="<%=items[i].imageUrl%>"/><br>
-            <%=items[i].snippet%><br>
-           <p>Price: <%=items[i].price%></p>
-                <button id="<%=items[i].id%>" class="buyButton btn btn-success" type="submit">Buy</button>
-            </li>
-            <% } %>
+        <!--<ul id = "list">-->
+            <!--<% for (var i=0; i< items.length; i++) { %>-->
+            <!--<li><%=items[i].age %><br>-->
+            <!--<%=items[i].name%><br>-->
+            <!--<%=items[i].id%><br>-->
+            <!--<img src="<%=items[i].imageUrl%>"/><br>-->
+            <!--<%=items[i].snippet%><br>-->
+           <!--<p>Price: <%=items[i].price%></p>-->
+                <!--<button id="<%=items[i].id%>" class="buyButton btn btn-success" type="submit">Buy</button>-->
+            <!--</li>-->
+            <!--<% } %>-->
 
-    </ul>
-</script>
+    <!--</ul>-->
+<!--</script>-->
 <!--<script type="text/template" id="listTemplate" src="js/Module1/Views/listTemplateView.html"></script>-->
+<script type="text/template" id="listTemplate" src="js/Module1/Templates/templates.js"></script>
 <script type="text/template" id="cartTemplate">
     <ul id = "cartList" >
         <h3 class="text-center">orders</h3>
