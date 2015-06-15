@@ -7,18 +7,23 @@ module.exports = function(grunt){
           }
         },
         connect:{
-          server:{
-              options:{
-                  port: 8080,
-                  base: {
-                      path: '/src',
-                      options: {
-                          index: 'index.html',
-                          maxAge: 300000
+              target: {
+                  options: {
+                      port: 8080,
+                      open: true,
+                      keepalive: true,
+                      base: ['src/'],
+                      middleware: function(connect, options){
+                        var middlewares;
+                          middlewares = [];
+                          middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]']));
+                          options.base.forEach(function(base) {
+                              return middlewares.push(connect["static"](base));
+                          });
+                          return middlewares;
                       }
                   }
               }
-          }
         },
         jshint: {
                 options: {
@@ -32,8 +37,8 @@ module.exports = function(grunt){
         }
     });
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    //grunt.loadNpmTasks('grunt-connect');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    modRewrite = require('connect-modrewrite');
     grunt.loadNpmTasks("grunt-serve");
     grunt.registerTask('default', ['jshint']);
 };
