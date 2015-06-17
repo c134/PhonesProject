@@ -1,16 +1,9 @@
-var itemsOnSaleModel = Backbone.Model.extend({
-    defaults:{
-        _items: null
-    }
-});
-//var itemsOnSaleCollection = Backbone.Collection.extend({
-//    model: itemsOnSaleModel
-//});
+
 var itemListView = Backbone.View.extend({
     _template: _.template($('#listTemplate').html()),
     el: $('#phonesDiv'),
     events: {
-    'click .buyButton':'_addToCart'
+        'click .buyButton': '_addToCart'
     },
     initialize: function () {
         'use strict';
@@ -22,21 +15,19 @@ var itemListView = Backbone.View.extend({
         this.$el.html(rendTemplate);
         return this;
     },
-    _addToCart: function(e){
+    _addToCart: function (e) {
         'use strict';
         var buttonId = $(e.currentTarget).attr('id');
         console.log(buttonId);
-                var result = _.findWhere(this.model.get('_items'), {id: buttonId});
-                var purchase = {
-                    id: result.id,
-                    name: result.name,
-                    price: result.price
-                };
+        var result = _.findWhere(this.model.get('_items'), {id: buttonId});
+        var purchase = {
+            id: result.id,
+            name: result.name,
+            price: result.price
+        };
         console.log(purchase);
-                //cartCollection.addItem(purchase);
-                //cartList.render();
+        cartCollection.addItem(purchase);
+        cartList.render();
     }
 });
-var itemsOnSale = new itemsOnSaleModel;
- itemsOnSale.set({'_items': phones});
 var itemList = new itemListView({model: itemsOnSale});

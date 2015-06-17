@@ -1,13 +1,7 @@
-var cartCollection = Backbone.Model.extend({
+var cartCollectionModel = Backbone.Model.extend({
 
-    defaults:{
+    _items: [],
 
-        _items: []
-    },
-
-    initialize:{
-
-    },
     _itemTotalPrice: function () {
         'use strict';
         for (var i = 0; i < this._items.length; i++) {
@@ -16,12 +10,14 @@ var cartCollection = Backbone.Model.extend({
     },
     addItem: function (obj) {
         'use strict';
+        console.log(obj);
         var purchase = {
             item: _.pick(obj, 'id', 'name', 'price'),
             thisItemTotal: obj.price,
             quantity: 1
         };
-        var result = _.find(_items, function (item) {
+        console.log(purchase.item.id);
+        var result = _.find(this._items, function (item) {
             return item.item.id === purchase.item.id;
         });
         console.log(result);
@@ -37,7 +33,7 @@ var cartCollection = Backbone.Model.extend({
     removeItem: function (buttonId) {
         'use strict';
         console.log(buttonId);
-        var result = _.find(_items, function (item) {
+        var result = _.find(this._items, function (item) {
             return item.item.id === buttonId;
         });
         console.log(result);
@@ -76,7 +72,7 @@ var cartCollection = Backbone.Model.extend({
     }
 
 });
-
+var cartCollection = new cartCollectionModel();
 
 
 
