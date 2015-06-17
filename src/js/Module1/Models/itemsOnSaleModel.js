@@ -4,3 +4,4 @@ var itemsOnSaleModel = Backbone.Model.extend({
     }
 });
 var itemsOnSale = new itemsOnSaleModel;
+itemsOnSale.set({'_items': phones});
