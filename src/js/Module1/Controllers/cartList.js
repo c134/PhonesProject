@@ -1,6 +1,6 @@
 var cartListView = Backbone.View.extend({
 
-    _itemsCollections: null,
+    collection: null,
 
     _template: _.template($('#cartTemplate').html()),
 
@@ -8,25 +8,15 @@ var cartListView = Backbone.View.extend({
 
     initialize: function () {
         'use strict';
-        //this.set({_itemsCollections: collection});
-        //this._itemsCollections = collection;
-        this._itemsCollections = cartCollection;
-        _.bindAll(this, 'render');
-        this.model.bind('change', this.render);
-        //console.log(this._itemsCollections);
+        this.collection.on('change reset add remove ', this.render, this);
     },
     events: {
         'click .removeButton': '_removeFromCart'
     },
+
     render: function () {
         'use strict';
-        var data = {
-            items: this._itemsCollections.getItems(),
-            total: this._itemsCollections.getTotalPrice(),
-            TotalQuantity: this._itemsCollections.getTotalQuantity()
-        };
-        console.log(data);
-        var rendTemplate = this._template({data: data});
+        var rendTemplate = this._template({items: this.collection.toJSON});
         this.$el.html(rendTemplate);
         return this
     },
@@ -35,7 +25,7 @@ var cartListView = Backbone.View.extend({
         var buttonId = $(e.currentTarget).attr('id');
         console.log("cartList id: " + buttonId);
         cartCollection.removeItem(buttonId);
-        cartList.render();
+
     }
 });
-cartList = new cartListView({model: cartCollection});
+cartList = new cartListView({collection:cartcollection});

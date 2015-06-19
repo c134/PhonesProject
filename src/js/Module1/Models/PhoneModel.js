@@ -1,13 +1,4 @@
-var Phone = Backbone.Model.extend({
-    defaults: {
-        "age": null,
-        "id": null,
-        "imageUrl": null,
-        "name": null,
-        "snippet": null,
-        "price": null
-    }
-});
+var Phone = Backbone.Model.extend({});
 var PhonesCollection = Backbone.Collection.extend({
     model: Phone
 });
@@ -32,31 +23,29 @@ var itemListView = Backbone.View.extend({
     _addToCart: function (e) {
         'use strict';
         var buttonId = $(e.currentTarget).attr('id');
-        console.log(buttonId);
-        //var result = this.collection.get(buttonId);
-        //var result = _.findWhere(this.collection, {id: buttonId});
         var result = this.collection.findWhere({id: buttonId});
         var purchase = {
-            id: result.id,
-            name: result.name,
-            price: result.price
+            id: result.attributes.id,
+            name: result.attributes.name,
+            price: result.attributes.price
         };
-        console.log(purchase);
-        //cartCollection.addItem(purchase);
-        //cartList.render();
+        //var purchase = new cartModel({
+        //    id: buttonId,
+        //    item: _.pick(purchase, 'id', 'name', 'price'),
+        //    itemTotalPrice: purchase.price
+        //});
+        //cartcollection.addToCart(new cartModel({
+        //    id: buttonId,
+        //    item: _.pick(purchase, 'id', 'name', 'price'),
+        //    itemTotalPrice: purchase.price
+        //}));
+        cartcollection.add(new cartModel({
+            id: buttonId,
+            item: _.pick(purchase, 'id', 'name', 'price'),
+            itemTotalPrice: purchase.price
+        }));
+        //console.log(cartcollection.get('quantity'));
     }
 });
-var phonesCollection = new PhonesCollection();
-for (var i = 0; i < phones.length; i++) {
-    phonesCollection.add(new Phone({
-            age: phones[i].age,
-            id: phones[i].id,
-            imageUrl: phones[i].imageUrl,
-            name: phones[i].name,
-            snippet: phones[i].snippet,
-            price: phones[i].price
-        }
-    ))
-}
+var phonesCollection = new PhonesCollection(phones);
 var itemlist = new itemListView({collection: phonesCollection});
-console.log(phonesCollection);
